@@ -166,7 +166,7 @@ namespace Notebook
             }
             for (int i = 0; i < notes.Count; i++)
             {
-                Console.WriteLine($"{i + 1}. Last Name: {notes[0].lastName}. Name: {notes[0].name}. Phone: {notes[0].phone}");
+                Console.WriteLine($"{i + 1}. Last Name: {notes[i].lastName}. Name: {notes[i].name}. Phone: {notes[i].phone}");
             }
 
 
