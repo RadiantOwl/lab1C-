@@ -85,7 +85,8 @@ namespace Notebook
         {
             Console.WriteLine("Create new note: 1");
             Console.WriteLine("Show note: 2");
-            Console.WriteLine("Show all: 3");
+            Console.WriteLine("Edit note: 3");
+            Console.WriteLine("Delete note: 4");
             Console.WriteLine("Exit: 6");
             Console.WriteLine("Select action:");
             switch (Console.ReadLine())
@@ -99,8 +100,18 @@ namespace Notebook
                     selectAction();
                     break;
                 case "3":
+                    Console.WriteLine("Select index: ");
+                    int index = Convert.ToInt32(Console.ReadLine());
+                    notes[index].redactNote();
                     showNotes();
                     selectAction();
+                    break;
+                case "4":
+                    Console.WriteLine("Select index: ");
+                    int i = 0;
+                    i = Convert.ToInt32(Console.ReadLine());
+                    notes.RemoveAt(i);
+                    showNotes();
                     break;
                 default:
                     Console.WriteLine("Error. Try again.");
@@ -157,48 +168,8 @@ namespace Notebook
             {
                 Console.WriteLine($"{i + 1}. Last Name: {notes[0].lastName}. Name: {notes[0].name}. Phone: {notes[0].phone}");
             }
-            Console.WriteLine("\n" + "Enter number of note you want to edit and delete. To return back press 0.");
-            int result = Convert.ToInt32(Console.ReadLine());
-            if (result == 0)
-            {
-                Console.Clear();
-                selectAction();
-            }
-            try
-            {
-                notes[result - 1].showNote();
-                selectActionWithNote(result - 1);
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Note is empty!");
-                Console.ReadKey();
-                showNotes();
-            }
 
-        }
-        public static void selectActionWithNote(int index)
-        {
-            Console.WriteLine("\n" + "To return back press: 0");
-            Console.WriteLine("To delete note: 1");
-            Console.WriteLine("To edit note: 2");
-            switch (Convert.ToInt32(Console.ReadLine()))
-            {
-                case 1:
-                    notes.RemoveAt(index);
-                    showNotes();
-                    break;
-                case 2:
-                    notes[index].redactNote();
-                    showNotes();
-                    break;
-                case 3:
-                    break;
-                default:
-                    Console.WriteLine("Invalid input.");
-                    selectActionWithNote(index);
-                    break;
-            }
+
         }
     }
 }
